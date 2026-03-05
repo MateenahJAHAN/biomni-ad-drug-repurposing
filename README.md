@@ -8,8 +8,34 @@ AI agent-driven identification of FDA-approved drugs with novel mechanistic rati
 
 - **Framework:** Biomni v0.0.8 (Stanford SNAP Lab)
 - **LLM:** Claude Sonnet 4 (claude-sonnet-4-20250514) via Anthropic API
-- **Databases queried:** GWAS Catalog, OpenTargets, UniProt, DrugBank, ChEMBL, DisGeNET
 - **AD Workbench reference datasets:** TREAT-AD PAK1 Inhibitor 5xFAD Study, TREAT-AD BV2 BioHvY Study, WashU Knight ADRC proteomic data
+
+## Methodology — Data Sources & Transparency
+
+### Databases with verified API calls:
+- **GWAS Catalog** — 3,258 AD-associated entries, 2,331 risk genes extracted from real data
+- **OpenTargets** — GraphQL API queried for APOE, TREM2, CD33, BIN1, CLU, CD2AP, EPHA1, MS4A6A
+- **ChEMBL** — drug mechanism and target queries for candidate compounds
+- **TxGNN** — local graph neural network model predicted drug repurposing scores
+  (Tacrine 0.9961, Acetylcarnitine 0.9953, Darapladib 0.9825)
+
+### Agent-synthesized (LLM reasoning, not direct database extraction):
+- Final top 10 drug ranking, composite scores, and BBB penetration ratings
+- Pathway categorization of risk genes
+- Experimental validation proposals
+- Drug mechanism rationales
+
+### Not queried (noted for transparency):
+- STRING/BioGRID protein-protein interactions
+- PubMed literature search (dependency failure)
+- DrugBank (not available in Biomni; ChEMBL used instead)
+
+This analysis represents an LLM-guided drug repurposing hypothesis generation
+pipeline with selective database grounding. The GWAS risk gene landscape and
+TxGNN predictions are computationally derived; downstream drug selection and
+rationale synthesis leverage the LLM's biomedical training knowledge.
+
+See [`results/methodology_audit.md`](results/methodology_audit.md) for the full audit.
 
 ## Reproduction
 
