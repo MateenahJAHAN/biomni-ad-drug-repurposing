@@ -6,9 +6,9 @@ AI agent-driven identification of FDA-approved drugs with novel mechanistic rati
 
 ## Method
 
-- **Framework:** Biomni v0.0.6 (Stanford SNAP Lab)
+- **Framework:** Biomni v0.0.8 (Stanford SNAP Lab)
 - **LLM:** Claude Sonnet 4 (claude-sonnet-4-20250514) via Anthropic API
-- **Databases queried:** GWAS Catalog, OpenTargets, UniProt, DrugBank
+- **Databases queried:** GWAS Catalog, OpenTargets, UniProt, DrugBank, ChEMBL, DisGeNET
 - **AD Workbench reference datasets:** TREAT-AD PAK1 Inhibitor 5xFAD Study, TREAT-AD BV2 BioHvY Study, WashU Knight ADRC proteomic data
 
 ## Reproduction
@@ -23,8 +23,52 @@ python run_ad_repurposing.py
 
 ## Results
 
-*To be populated after agent run completes — ranked drug candidates table.*
+### Top 10 Ranked Drug Candidates
+
+| Rank | Drug | Score | Target Pathway | Key GWAS Connections |
+|------|------|-------|----------------|---------------------|
+| 1 | **Minocycline** | 60 | Neuroinflammation | TREM2, CD33, INPP5D |
+| 2 | **Acetyl-L-carnitine** | 55 | Energy Metabolism | Mitochondrial bioenergetics |
+| 3 | **Rapamycin** | 52 | Autophagy/Lysosomal | BIN1, PICALM, CD2AP |
+| 4 | **Simvastatin** | 50 | Lipid Metabolism | APOE, ABCA7, CLU |
+| 5 | **Pioglitazone** | 50 | Neuroinflammation | TREM2, PLCG2 |
+| 6 | **Vorinostat** | 50 | Epigenetic Regulation | MEF2C, CELF1 |
+| 7 | **Lithium** | 50 | Synaptic Maintenance | GSK3β pathway |
+| 8 | **Celecoxib** | 50 | Neuroinflammation | COX-2/inflammatory cascade |
+| 9 | **Metformin** | 47 | Energy Metabolism | AMPK activation |
+| 10 | **Darapladib** | 30 | Neuroinflammation | Lp-PLA2 inhibition |
+
+### Pathway Convergence
+
+- **Neuroinflammation** (TREM2, CD33, MS4A6A, PLCG2, INPP5D): Minocycline, Pioglitazone, Celecoxib
+- **Autophagy/Lysosomal** (BIN1, PICALM, CD2AP): Rapamycin
+- **Lipid Metabolism** (APOE, ABCA7, CLU, SORL1): Simvastatin
+- **Mitochondrial Bioenergetics**: Acetyl-L-carnitine, Metformin
+- **Epigenetic Regulation** (MEF2C, CELF1): Vorinostat
+
+Full results: [`results/ad_repurposing_results.md`](results/ad_repurposing_results.md)
 
 ## Experimental Validation Proposals
 
-*To be populated after agent run completes — proposed wet-lab protocols.*
+### Primary Screening (Months 1-3)
+- **Cell Lines:** iPSC-derived neurons, BV2 microglia, primary astrocytes
+- **Dose-Response:** 3-5 concentrations spanning therapeutic range
+- **Readouts:** Pathway-specific biomarkers, cell viability, neuroprotection
+
+### Secondary Validation (Months 4-6)
+- **Advanced Models:** 3D brain organoids, co-culture systems
+- **Functional Assays:** Synaptic function, network activity, Aβ clearance
+
+### Translational Studies (Months 7-12)
+- **Animal Models:** 5xFAD, APP/PS1, APOE4 knock-in mice
+- **Cognitive Testing:** Morris water maze, novel object recognition
+- **Biomarkers:** CSF Aβ42, p-tau, neuroinflammatory markers
+
+### AD Workbench Cross-References
+- **TREAT-AD PAK1 Inhibitor 5xFAD Study:** Validates kinase inhibition approach; supports neuroinflammation pathway candidates (Minocycline, Pioglitazone)
+- **TREAT-AD BV2 BioHvY Study:** Microglial transcriptomic data to validate predicted TREM2/CD33 pathway drug effects
+- **WashU Knight ADRC (3,150 patients):** Proteomic data to verify altered protein levels of drug targets in AD patients
+
+## Combination Therapy Potential
+- Minocycline + Rapamycin (neuroinflammation + autophagy)
+- Simvastatin + Acetyl-L-carnitine (lipid metabolism + mitochondrial function)
