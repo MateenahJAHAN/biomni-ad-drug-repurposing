@@ -1,0 +1,32 @@
+from biomni.agent import A1
+
+agent = A1(path='./data', llm='claude-sonnet-4-20250514')
+
+result = agent.go("""
+Task: Identify FDA-approved drugs for repurposing in Alzheimer's disease
+with novel mechanistic rationale beyond amyloid-beta and tau.
+
+Approach:
+1. Query the GWAS Catalog for all Alzheimer's disease-associated loci
+   (trait: Alzheimer's disease). Extract lead SNPs and mapped genes.
+2. For the top risk genes, query OpenTargets and UniProt to identify
+   their protein products, functions, and pathway memberships.
+3. Focus on these underexplored AD pathways: neuroinflammation
+   (microglial activation, complement), lipid metabolism (APOE pathway,
+   cholesterol trafficking), autophagy/lysosomal dysfunction, synaptic
+   maintenance, and epigenetic regulation.
+4. Query DrugBank to find FDA-approved drugs that target these proteins
+   or closely connected pathway members.
+5. Score and rank the top 10 candidates based on:
+   - Number of AD GWAS risk genes in target pathway
+   - Existing preclinical or epidemiological evidence for AD
+   - Blood-brain barrier penetration likelihood
+   - Safety profile and tolerability
+6. For each top candidate, propose a concrete experimental validation:
+   specify cell line (e.g., iPSC-derived neurons, BV2 microglia),
+   assay type, dose range, and expected readout.
+
+Output a ranked table and a detailed rationale for each drug.
+""")
+
+agent.save_conversation_history("results/ad_repurposing_trace.pdf")
