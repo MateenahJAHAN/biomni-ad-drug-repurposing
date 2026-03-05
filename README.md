@@ -46,7 +46,22 @@ python run_ad_repurposing.py
 - **Mitochondrial Bioenergetics**: Acetyl-L-carnitine, Metformin
 - **Epigenetic Regulation** (MEF2C, CELF1): Vorinostat
 
-Full results: [`results/ad_repurposing_results.md`](results/ad_repurposing_results.md)
+### Figures
+
+![Drug Repurposing Scores](results/drug_repurposing_scores.png)
+
+![Pathway-Gene-Drug Network](results/pathway_cluster_network.png)
+
+![Drug-Gene Heatmap](results/ad_gwas_gene_drug_heatmap.png)
+
+### Data Files
+
+| File | Description |
+|------|-------------|
+| [`ranked_drug_candidates.csv`](results/ranked_drug_candidates.csv) | Structured ranking with scores, targets, pathways, BBB penetration |
+| [`validation_proposals.csv`](results/validation_proposals.csv) | Experimental protocols with AD Workbench dataset references |
+| [`ad_repurposing_results.md`](results/ad_repurposing_results.md) | Full agent analysis with detailed rationale |
+| [`ad_repurposing_full_trace.txt`](results/ad_repurposing_full_trace.txt) | Complete Biomni agent execution trace |
 
 ## Experimental Validation Proposals
 
