@@ -1,0 +1,105 @@
+================================================================================
+SYSTEM PROMPT — 2026 Novel AD Targets Convergence Analysis
+================================================================================
+
+Framework: Biomni v0.0.8 (Stanford SNAP Lab)
+Agent: A1(path='./data', llm='claude-sonnet-4-20250514')
+Script: run_ad_novel_targets_2026.py
+
+================================================================================
+AGENT CALL 1 — Main Analysis Prompt
+================================================================================
+
+Task: Map the convergent biology of 2026's breakthrough Alzheimer's disease targets
+and identify multi-target therapeutic strategies.
+
+CONTEXT FROM PRIOR ANALYSIS:
+Our prior drug repurposing analysis identified neuroinflammation (TREM2, CD33, INPP5D),
+lipid metabolism (APOE, ABCA7), autophagy (BIN1, PICALM), and epigenetic regulation
+(MEF2C) as the top underexplored AD pathway clusters. Building on this, we now
+investigate how the latest 2026 discoveries connect to and extend these findings.
+
+STEP 1: Novel Target Network Construction
+Investigate these newly identified 2026 AD targets and map their network connections:
+
+a) IDOL (MYLIP) enzyme — neuronal IDOL deletion reduces amyloid plaques and increases
+   LDLR/LRP1 levels, connecting to APOE/lipid metabolism. Query how IDOL interacts
+   with APOE, ABCA7, CLU, and SORL1 in the lipid pathway from our prior analysis.
+
+b) SST1 (SSTR1) and SST4 (SSTR4) somatostatin receptors — regulate neprilysin (MME),
+   the brain's primary amyloid-beta degrading enzyme. Map their connection to amyloid
+   clearance pathways and other AD GWAS genes.
+
+c) Levetiracetam/SV2A mechanism — SV2A binding alters APP trafficking to prevent
+   amyloid-beta 42 production. Map SV2A interactions with endosomal sorting genes
+   (BIN1, PICALM, CD2AP) from autophagy/endosomal pathway.
+
+d) NAD+ metabolism (NAMPT, NMNAT, SIRT1-3) — NAD+ restoration reversed advanced AD
+   in mice. Map connections to mitochondrial function, epigenetic regulation via
+   sirtuins, and neuroinflammation.
+
+e) p-tau217 as a biomarker clock — investigate what molecular pathways drive the
+   p-tau217 trajectory and how the targets above might alter it.
+
+STEP 2: Convergence Analysis
+For each pair of novel targets, determine:
+- Do they share protein-protein interactions? (query STRING/BioGRID)
+- Do they converge on common pathways? (query KEGG, Reactome)
+- Do they show co-expression in AD brain regions? (query Allen Brain Atlas, GTEx)
+- Are there genetic interactions between their loci in AD GWAS?
+
+STEP 3: Multi-Target Therapeutic Strategy
+Based on convergence analysis, propose rational drug combinations:
+- Which pairs of targets would synergize if co-targeted?
+- Are there existing compounds that hit multiple novel targets?
+- Design a "combination therapy roadmap" with specific drug pairs and
+  the biological rationale for synergy.
+
+STEP 4: AD Workbench Dataset Cross-Validation
+For each novel target, identify which AD Workbench datasets contain
+relevant experimental data:
+- Jax.IU.Pitt_Levetiracetam-5XFAD study (SV2A/levetiracetam mechanism)
+- TREAT-AD PAK1 Inhibitor 5xFAD (kinase pathway connections to IDOL)
+- WashU Knight ADRC proteomic data (protein-level validation of targets)
+- ROSMAP Proteoform study (targeted proteomics of AD risk gene products)
+- WGS_Harmonization (genetic variant analysis in target gene loci)
+
+STEP 5: Output
+Produce:
+1. A target convergence network showing how IDOL, SST1/4, SV2A, NAD+
+   metabolism, and p-tau217 connect to each other and to established
+   AD GWAS risk genes
+2. A ranked table of multi-target drug combinations with synergy rationale
+3. A proposed clinical biomarker strategy using p-tau217 to monitor
+   novel target engagement
+
+================================================================================
+AGENT CALL 2 — Structured Combination Table
+================================================================================
+
+Based on the analysis you just completed, produce ONLY a structured table
+in this exact format (no extra text, just the table rows):
+
+Rank | Drug/Compound 1 | Target 1 | Drug/Compound 2 | Target 2 | Convergent Pathway | Synergy Rationale | p-tau217 Impact Prediction | AD Workbench Validation Dataset
+
+Fill at least 8 rows, ranked by predicted synergy strength.
+
+================================================================================
+AGENT CALL 3 — Individual Target Summary
+================================================================================
+
+Produce ONLY a structured table with these columns (no extra text):
+
+Target | Gene(s) | Mechanism in AD | Connected GWAS Genes | Existing Drugs | BBB Penetrant | Clinical Stage | Key Evidence (2026)
+
+Include rows for: IDOL/MYLIP, SSTR1, SSTR4, SV2A, NAMPT, NMNAT2, SIRT1, SIRT3, p-tau217/MAPT
+
+================================================================================
+EXECUTION STATUS
+================================================================================
+
+This script has NOT been successfully executed. Biomni agent calls require a
+valid ANTHROPIC_API_KEY environment variable. The figures were generated from
+hardcoded matplotlib code independent of agent execution.
+
+See methodology_audit.md for full data provenance analysis.

@@ -1,0 +1,67 @@
+🎓 Academic mode: Using all datasets (including non-commercial)
+
+==================================================
+🔧 BIOMNI CONFIGURATION
+==================================================
+📋 DEFAULT CONFIG (Including Database LLM):
+  Path: ./data
+  Timeout Seconds: 600
+  Llm: claude-sonnet-4-5
+  Temperature: 0.7
+  Use Tool Retriever: True
+  Commercial Mode: Academic (all datasets)
+
+🤖 AGENT LLM (Constructor Override):
+  LLM Model: claude-sonnet-4-20250514
+==================================================
+
+Checking and downloading missing data lake files...
+Traceback (most recent call last):
+  File "/home/user/biomni-ad-drug-repurposing/run_ad_novel_targets_2026.py", line 9, in <module>
+    result = agent.go("""
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/biomni/agent/a1.py", line 1645, in go
+    selected_resources_names = self._prepare_resources_for_retrieval(prompt)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/biomni/agent/a1.py", line 1611, in _prepare_resources_for_retrieval
+    selected_resources = self.retriever.prompt_based_retrieval(prompt, resources, llm=self.llm)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/biomni/model/retriever.py", line 76, in prompt_based_retrieval
+    response = llm.invoke([HumanMessage(content=prompt)])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/langchain_core/language_models/chat_models.py", line 402, in invoke
+    self.generate_prompt(
+  File "/usr/local/lib/python3.11/dist-packages/langchain_core/language_models/chat_models.py", line 1123, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/langchain_core/language_models/chat_models.py", line 933, in generate
+    self._generate_with_cache(
+  File "/usr/local/lib/python3.11/dist-packages/langchain_core/language_models/chat_models.py", line 1235, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/langchain_anthropic/chat_models.py", line 1432, in _generate
+    data = self._create(payload)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/langchain_anthropic/chat_models.py", line 1286, in _create
+    return self._client.messages.create(**payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/anthropic/_utils/_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/anthropic/resources/messages/messages.py", line 996, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/anthropic/_base_client.py", line 1364, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/anthropic/_base_client.py", line 1058, in request
+    request = self._build_request(options, retries_taken=retries_taken)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/anthropic/_base_client.py", line 521, in _build_request
+    headers = self._build_headers(options, retries_taken=retries_taken)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/anthropic/_base_client.py", line 451, in _build_headers
+    self._validate_headers(headers_dict, custom_headers)
+  File "/usr/local/lib/python3.11/dist-packages/anthropic/_client.py", line 196, in _validate_headers
+    raise TypeError(
+TypeError: "Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted"
